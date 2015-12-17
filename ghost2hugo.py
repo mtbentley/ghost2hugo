@@ -31,8 +31,8 @@ FROM posts'''):
     g = {i.keys()[e]: tuple(i)[e] for e in range(len(i.keys()))}
     t = (i['id'],)
     g['tags'] = [e['name'] for e in c2.execute('''
-SELECT t.name FROM posts_tags pt JOIN tags t ON pt.tag_id = t.id
-WHERE pt.post_id=?''', t)]
+    SELECT t.name FROM posts_tags pt JOIN tags t ON pt.tag_id = t.id
+    WHERE pt.post_id=?''', t)]
 
     if g['date'] == None:
         g['date'] = g['date2']
@@ -55,7 +55,6 @@ WHERE pt.post_id=?''', t)]
     text = text.replace("\# ", "\#")
 
     # post type
-
     if g['page'] == True:
         page = 'page'
     else:
@@ -70,7 +69,6 @@ WHERE pt.post_id=?''', t)]
         post_file.write('title = "%s"\n' % g['title'].encode('utf8'))
         post_file.write('description = "%s"\n' % g['description'].encode('utf8'))
         post_file.write('slug = "%s"\n' % g['slug'])
-        
         
         post_file.write('tags = [')
 
